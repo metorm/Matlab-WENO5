@@ -4,13 +4,17 @@ A matlab toolkit to calculate numerical differentiation using WENO5 scheme. Main
 ## Install
 Just Copy the code to your working directory or add them to your path.
 
-``` addpath('X:\dev\GitHub\Matlab-WENO5');```
+```
+addpath('X:\dev\GitHub\Matlab-WENO5');
+```
 
 ## Function usage
 
 Currently the code only works with 2D. Extending to 3D is straight forward.
 
-```function [ Dx,Dy,Dxf,Dxb,Dyf,Dyb ] = WENO5_2D( F,StepX,StepY )```
+```
+function [ Dx,Dy,Dxf,Dxb,Dyf,Dyb ] = WENO5_2D( F,StepX,StepY )
+```
 
 `F` is the 2D matrix you want to get WENO differentiation, `StepX,StepY` is grid size on `x` or `y` axis. Note that `x` here corresponds to the second subscript in a matlab matrix.
 
