@@ -13,6 +13,11 @@ function [ Dx,Dy,Dxf,Dxb,Dyf,Dyb ] = WENO5_2D( F,StepX,StepY )
 % calculate first order backward differentiation. xf_n = xb_(n+1)
 [BackwardDx,BackwardDy] = BackwardFirstOrderDiff( F,StepX,StepY );%#ok<*PFBNS>
 
+if(sum(sum(isnan(BackwardDx))) + sum(sum(isnan(BackwardDy))) >0)
+    % if this error is triggered, set break point here to debug
+    error('NaN found in array. Something wrong.');
+end
+
 [LimY,LimX] = size(F);
 
 % pre-allocate
@@ -54,6 +59,12 @@ for xi = 1:LimX
             DiffBackwardValueY,...            
             BackwardDy(IdxOffset(yi,LimY,-1),xi));        
     end
+end
+
+if(sum(sum(isnan(Dxf))) + sum(sum(isnan(Dxb))) + sum(sum(isnan(Dyb))) ...
+    + sum(sum(isnan(Dyf))) > 0)
+    % if this error is triggered, set break point here to debug
+    error('NaN found in array. Something wrong.');
 end
 
 % combine backward and forward differentiation

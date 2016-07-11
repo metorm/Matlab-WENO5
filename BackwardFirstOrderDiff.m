@@ -18,4 +18,9 @@ Dx(:,1) = Dx(:,2);
 Dy(2:end,:) = diff(F)/StepY;
 Dy(1,:) = Dy(2,:);
 
+if(sum(sum(isnan(Dx))) + sum(sum(isnan(Dy))) >0)
+    % if this error is triggered, set break point here to debug
+    error('NaN found in array. Something wrong.');
+end
+
 end
